@@ -36,7 +36,7 @@ function Countdown() {
   return (
     <section className="countdown">
       <p className="countdown-label">
-        {timeLeft.finished ? "THE GAME HAS BEGUN" : "TIME UNTIL GAME START"}
+        {timeLeft.finished ? "THE GAME HAS BEGUN" : "YOUR RUN BEGINS IN"}
       </p>
 
       <div className="countdown-units">

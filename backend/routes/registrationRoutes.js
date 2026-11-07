@@ -1,8 +1,13 @@
 import express from "express";
-import { createRegistration } from "../controllers/registrationController.js";
+
+import {
+  createRegistration,
+  getRegistration,
+} from "../controllers/registrationController.js";
 
 const router = express.Router();
 
 router.post("/", createRegistration);
+router.get("/:registrationId", getRegistration);
 
 export default router;

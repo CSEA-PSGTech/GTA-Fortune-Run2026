@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 
 const memberSchema = new mongoose.Schema(
@@ -12,6 +13,7 @@ const memberSchema = new mongoose.Schema(
       required: true,
       trim: true,
       uppercase: true,
+      match: /^2\d[ZN]\d{3}$/,
     },
     phone: {
       type: String,

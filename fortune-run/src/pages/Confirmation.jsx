@@ -1,14 +1,67 @@
+
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
+const API_URL = "http://localhost:5001/api/registrations";
 
 function Confirmation() {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  if (!state?.members || !state?.registrationId) {
+  const registrationId = state?.registrationId;
+
+  const [registration, setRegistration] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!registrationId) {
+      setLoading(false);
+      setError("No registration ID found.");
+      return;
+    }
+
+    const fetchRegistration = async () => {
+      try {
+        const response = await fetch(
+          `${API_URL}/${encodeURIComponent(registrationId)}`
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.message || "Unable to retrieve registration."
+          );
+        }
+
+        setRegistration(data);
+      } catch (err) {
+        setError(err.message || "Unable to connect to the server.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRegistration();
+  }, [registrationId]);
+
+  if (loading) {
+    return (
+      <main className="confirmation-page">
+        <div className="no-mission">
+          <h1>LOADING MISSION...</h1>
+        </div>
+      </main>
+    );
+  }
+
+  if (error || !registration) {
     return (
       <main className="confirmation-page">
         <div className="no-mission">
           <h1>NO ACTIVE MISSION</h1>
+          <p>{error}</p>
           <button onClick={() => navigate("/")}>
             BACK TO REGISTRATION
           </button>
@@ -17,7 +70,7 @@ function Confirmation() {
     );
   }
 
-  const { members, registrationId } = state;
+  const { members, registrationId: savedId } = registration;
 
   return (
     <main className="confirmation-page">
@@ -39,18 +92,14 @@ function Confirmation() {
 
         <div className="registration-id">
           <p>REGISTRATION ID</p>
-          <h2>{registrationId}</h2>
+          <h2>{savedId}</h2>
         </div>
 
         <div className="confirmed-crew">
           <h3>YOUR CREW</h3>
 
           {members.map((member, index) => (
-            <div className="confirmed-member" key={index}>
-              {member.avatar && (
-                <img src={member.avatar} alt="" />
-              )}
-
+            <div className="confirmed-member" key={member.rollNo}>
               <div className="confirmed-member-details">
                 <span>PLAYER 0{index + 1}</span>
                 <h4>{member.name}</h4>
@@ -65,16 +114,30 @@ function Confirmation() {
         </div>
 
         <div className="whatsapp-section">
-          <div>
+        <div>
             <h3>STAY CONNECTED</h3>
-            <p>
-              Join the participants' WhatsApp group for event updates.
-            </p>
-          </div>
+            <p>Follow CSEA and join the participants' group for updates.</p>
+        </div>
 
-          <p className="invite-pending">
-            INVITATION LINK WILL BE ADDED SOON
-          </p>
+        <div className="social-links">
+            <a
+            href="https://www.instagram.com/cseapsgtech/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="instagram-button"
+            >
+            FOLLOW CSEA ON INSTAGRAM 
+            </a>
+
+            <a
+            href="https://chat.whatsapp.com/L0wRygfeNH96oWHr9lb0EW?s=cl&p=i&mlu=4&ilr=4&iam=2"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="whatsapp-invite-button"
+            >
+            JOIN PARTICIPANTS GROUP
+            </a>
+        </div>
         </div>
 
         <p className="confirmation-footer">

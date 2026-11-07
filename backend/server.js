@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/database.js";
 import registrationRoutes from "./routes/registrationRoutes.js";
 import cors from "cors";
+import RegisteredRollNumber from "./models/RegisteredRollNumber.js";
 
 dotenv.config();
 
@@ -21,6 +22,9 @@ const PORT = process.env.PORT || 5000;
 const startServer = async () => {
   try {
     await connectDB();
+
+    await RegisteredRollNumber.init();
+    console.log("Roll number unique index ready");
 
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);

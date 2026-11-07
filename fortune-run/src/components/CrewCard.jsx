@@ -76,11 +76,14 @@ function CrewCard({ member, onChange, onRemove, playerNumber }) {
         />
 
         <input
-          type="text"
-          placeholder="COLLEGE ROLL NUMBER"
-          value={member.rollNo}
-          onChange={(e) => update("rollNo", e.target.value)}
-          required
+        type="text"
+        placeholder="COLLEGE ROLL NUMBER"
+        value={member.rollNo}
+        onChange={(e) => update("rollNo", e.target.value)}
+        pattern="2[0-9][zZnN][0-9]{3}"
+        maxLength={6}
+        title="Format: 25z331 or 26n234"
+        required
         />
 
         <input
