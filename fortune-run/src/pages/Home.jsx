@@ -1,3 +1,4 @@
+
 import RegistrationForm from "../components/RegistrationForm";
 import Countdown from "../components/Countdown";
 import eventLogo from "../assets/images/gta-fortune-run.png";
@@ -22,6 +23,20 @@ function Home() {
 
       <Countdown />
       <RegistrationForm />
+
+      <section className="contact-section">
+        <p className="contact-heading">FOR QUERIES & SUPPORT</p>
+
+        <div className="contact-details">
+          <a href="tel:+918778525284">
+            Sanjana <span>+91 877 852 5284</span>
+          </a>
+
+          <a href="tel:+919080857517">
+            Sri Deaksha <span>+91 90808 57517</span>
+          </a>
+        </div>
+      </section>
 
       <footer className="bottom-bar">
         <span>LOS SANTOS AWAITS.</span>
