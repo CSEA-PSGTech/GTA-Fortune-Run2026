@@ -175,6 +175,12 @@ function RegistrationForm() {
         />
         </button>
 
+        {loading && (
+        <p className="registration-wait-message" role="status" aria-live="polite">
+            PLEASE WAIT UNTIL WE CONFIRM YOUR REGISTRATION
+        </p>
+        )}
+
     </form>
   );
 }
