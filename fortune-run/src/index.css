@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
 
 /* =========================
@@ -209,6 +210,13 @@ button {
   display: flex;
   align-items: center;
   gap: 9px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.header-brand:hover {
+  opacity: 0.8;
 }
 
 .csea-logo {
@@ -574,8 +582,13 @@ button {
   box-shadow: 0 8px 25px rgba(255, 113, 159, 0.25);
 }
 
+.submit-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
 /* =========================
-   REGISTRATION FOOTER
+   FOOTER
 ========================= */
 
 .bottom-bar {
@@ -595,7 +608,9 @@ button {
 }
 
 /* =========================
-   DESKTOP: ONE SCREEN
+   DESKTOP: ORIGINAL RULES
+   Page-specific overrides
+   are applied at the end.
 ========================= */
 
 @media (min-width: 951px) {
@@ -867,6 +882,165 @@ button {
     text-align: center;
     font-size: 8px;
   }
+}
+
+/* =========================
+   LANDING PAGE
+========================= */
+
+.landing-page {
+  height: auto;
+  min-height: 100vh;
+  min-height: 100svh;
+
+  overflow: visible;
+  overflow-x: clip;
+
+  justify-content: flex-start;
+}
+
+.landing-page .hero {
+  margin: 35px auto 15px;
+}
+
+.landing-page .event-logo {
+  width: min(85vw, 850px);
+  height: clamp(130px, 20vw, 210px);
+}
+
+.landing-countdown {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 35px auto;
+}
+
+.landing-countdown .countdown {
+  max-width: 750px;
+  margin: 0;
+}
+
+.landing-countdown .countdown-label {
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.landing-countdown .countdown-units {
+  gap: clamp(25px, 6vw, 75px);
+}
+
+.landing-countdown .countdown-unit {
+  min-width: 65px;
+  gap: 8px;
+}
+
+.landing-countdown .countdown-value {
+  font-size: clamp(48px, 8vw, 76px);
+}
+
+.landing-countdown .countdown-unit-label {
+  font-size: 11px;
+}
+
+.landing-countdown .countdown-date {
+  font-size: 11px;
+  margin-top: 18px;
+}
+
+.register-now-button {
+  display: block;
+  width: min(90%, 300px);
+  margin: 10px auto 35px;
+  padding: 16px 25px;
+
+  text-align: center;
+  text-decoration: none;
+
+  color: #190e19;
+  background: linear-gradient(100deg, #ff719f, #ff914d);
+
+  border-radius: 4px;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.register-now-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 113, 159, 0.3);
+}
+
+.landing-page .contact-section {
+  margin-top: auto;
+  padding: 20px 0;
+}
+
+.landing-page .bottom-bar {
+  margin-top: 0;
+}
+
+/* =========================
+   REGISTRATION PAGE
+========================= */
+
+.registration-page {
+  height: auto;
+  min-height: 100vh;
+  min-height: 100svh;
+
+  overflow: visible;
+  overflow-x: clip;
+
+  justify-content: flex-start;
+}
+
+.back-link {
+  color: #ffb0c9;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.back-link:hover {
+  color: white;
+}
+
+.registration-heading {
+  width: 100%;
+  text-align: center;
+  margin: 22px auto;
+}
+
+.registration-logo {
+  width: min(65vw, 420px);
+  height: 90px;
+  object-fit: contain;
+}
+
+.registration-heading h1 {
+  color: #ff719f;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px;
+  letter-spacing: 3px;
+}
+
+.registration-heading p {
+  color: #ffb0c9;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.registration-page .registration-form {
+  margin-bottom: 25px;
+}
+
+.registration-page .bottom-bar {
+  margin-top: auto;
 }
 
 /* =========================
@@ -1153,7 +1327,7 @@ button {
   letter-spacing: 1px;
 }
 
-/* CONFIRMATION DESKTOP: ONE SCREEN */
+/* CONFIRMATION DESKTOP */
 
 @media (min-width: 651px) {
   .confirmation-page {
@@ -1297,12 +1471,20 @@ button {
   }
 }
 
+/* =========================
+   REGISTRATION ERROR
+========================= */
+
 .registration-error {
   color: #ff719f;
   font-size: 0.8rem;
   text-align: center;
   margin: 8px 0;
 }
+
+/* =========================
+   SOCIAL LINKS
+========================= */
 
 .whatsapp-invite-button {
   display: inline-block;
@@ -1351,13 +1533,6 @@ button {
   color: #ff914d;
 }
 
-@media (max-width: 650px) {
-  .instagram-section {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-}
-
 .social-links {
   display: flex;
   flex-direction: column;
@@ -1385,14 +1560,9 @@ button {
   opacity: 0.85;
 }
 
-@media (max-width: 650px) {
-  .social-links {
-    width: 100%;
-  }
-}
-
-
-/* CONTACT DETAILS */
+/* =========================
+   CONTACT DETAILS
+========================= */
 
 .contact-section {
   width: 100%;
@@ -1434,7 +1604,20 @@ button {
   color: #ff719f;
 }
 
+/* =========================
+   RESPONSIVE SOCIAL & CONTACT
+========================= */
+
 @media (max-width: 650px) {
+  .instagram-section {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .social-links {
+    width: 100%;
+  }
+
   .contact-section {
     margin-top: 18px;
   }
@@ -1444,12 +1627,215 @@ button {
     gap: 9px;
   }
 }
-.header-brand {
-  text-decoration: none;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
+
+/* =========================
+   LANDING PAGE LAYOUT
+========================= */
+
+/* Override the old desktop one-screen layout.
+   Both new pages must be allowed to scroll. */
+
+.landing-page {
+  height: auto;
+  min-height: 100vh;
+  min-height: 100svh;
+
+  overflow: visible;
+  overflow-x: clip;
+
+  justify-content: flex-start;
 }
 
-.header-brand:hover {
-  opacity: 0.8;
+.landing-page .hero {
+  margin: 35px auto 15px;
+}
+
+.landing-page .event-logo {
+  width: min(85vw, 850px);
+  height: clamp(130px, 20vw, 210px);
+}
+
+.landing-countdown {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 35px auto;
+}
+
+.landing-countdown .countdown {
+  max-width: 750px;
+  margin: 0;
+}
+
+.landing-countdown .countdown-label {
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.landing-countdown .countdown-units {
+  gap: clamp(25px, 6vw, 75px);
+}
+
+.landing-countdown .countdown-unit {
+  min-width: 65px;
+  gap: 8px;
+}
+
+.landing-countdown .countdown-value {
+  font-size: clamp(48px, 8vw, 76px);
+}
+
+.landing-countdown .countdown-unit-label {
+  font-size: 11px;
+}
+
+.landing-countdown .countdown-date {
+  font-size: 11px;
+  margin-top: 18px;
+}
+
+.register-now-button {
+  display: block;
+  width: min(90%, 300px);
+  margin: 10px auto 35px;
+  padding: 16px 25px;
+
+  text-align: center;
+  text-decoration: none;
+
+  color: #190e19;
+  background: linear-gradient(100deg, #ff719f, #ff914d);
+
+  border-radius: 4px;
+
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.register-now-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 113, 159, 0.3);
+}
+
+.landing-page .contact-section {
+  margin-top: auto;
+  padding: 20px 0;
+}
+
+.landing-page .bottom-bar {
+  margin-top: 0;
+}
+
+/* =========================
+   REGISTRATION PAGE LAYOUT
+========================= */
+
+.registration-page {
+  height: auto;
+  min-height: 100vh;
+  min-height: 100svh;
+
+  overflow: visible;
+  overflow-x: clip;
+
+  justify-content: flex-start;
+}
+
+.back-link {
+  color: #ffb0c9;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.back-link:hover {
+  color: white;
+}
+
+.registration-heading {
+  width: 100%;
+  text-align: center;
+  margin: 22px auto;
+}
+
+.registration-logo {
+  width: min(65vw, 420px);
+  height: 90px;
+  object-fit: contain;
+}
+
+.registration-heading h1 {
+  color: #ff719f;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px;
+  letter-spacing: 3px;
+}
+
+.registration-heading p {
+  color: #ffb0c9;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.registration-page .registration-form {
+  margin-bottom: 25px;
+}
+
+.registration-page .bottom-bar {
+  margin-top: auto;
+}
+
+/* =========================
+   NEW PAGE MOBILE STYLES
+========================= */
+
+@media (max-width: 650px) {
+  .landing-page .hero {
+    margin: 30px auto 15px;
+  }
+
+  .landing-countdown {
+    margin: 30px auto;
+  }
+
+  .landing-countdown .countdown-units {
+    gap: 17px;
+  }
+
+  .landing-countdown .countdown-unit {
+    min-width: 45px;
+  }
+
+  .landing-countdown .countdown-value {
+    font-size: 42px;
+  }
+
+  .landing-countdown .countdown-label {
+    font-size: 10px;
+  }
+
+  .register-now-button {
+    margin-bottom: 25px;
+  }
+
+  .landing-page .contact-section {
+    margin-top: 20px;
+  }
+
+  .registration-heading {
+    margin: 20px auto;
+  }
+
+  .registration-heading h1 {
+    font-size: 32px;
+  }
+
+  .registration-page .crew-grid.three-members {
+    grid-template-columns: 1fr;
+  }
 }
