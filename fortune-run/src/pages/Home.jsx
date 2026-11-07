@@ -10,11 +10,17 @@ function Home() {
       <header className="top-bar">
         <span className="college-name">PSG COLLEGE OF TECHNOLOGY</span>
 
-        <div className="header-brand">
-          <img src={cseaLogo} alt="CSEA Logo" className="csea-logo" />
-          <span className="portal-label">CSEA PRESENTS</span>
-        </div>
-      </header>
+        <a
+            href="https://csea.psgtech.ac.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="header-brand"
+            aria-label="Visit CSEA official website"
+        >
+            <img src={cseaLogo} alt="CSEA Logo" className="csea-logo" />
+            <span className="portal-label">CSEA PRESENTS</span>
+        </a>
+        </header>
 
       <section className="hero">
         <img src={eventLogo} alt="GTA: Fortune Run" className="event-logo" />

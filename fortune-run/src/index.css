@@ -1444,3 +1444,12 @@ button {
     gap: 9px;
   }
 }
+.header-brand {
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.header-brand:hover {
+  opacity: 0.8;
+}
