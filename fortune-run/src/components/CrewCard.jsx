@@ -14,12 +14,16 @@ function CrewCard({ member, onChange, playerNumber }) {
               src={member.avatar}
               alt=""
               aria-hidden="true"
+              loading="eager"
             />
 
             <img
-              className="avatar-main"
-              src={member.avatar}
-              alt="Crew character"
+            className="avatar-main"
+            src={member.avatar}
+            alt="Crew character"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             />
           </>
         ) : (

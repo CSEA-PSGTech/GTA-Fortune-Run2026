@@ -4,7 +4,26 @@ import Countdown from "../components/Countdown";
 import eventLogo from "../assets/images/gta-fortune-run.png";
 import cseaLogo from "../assets/images/csea logo.png";
 
+import { useEffect } from "react";
+
+import b1 from "../assets/images/avatars/b1.webp";
+import b2 from "../assets/images/avatars/b2.webp";
+import b3 from "../assets/images/avatars/b3.webp";
+import g1 from "../assets/images/avatars/g1.webp";
+import g2 from "../assets/images/avatars/g2.webp";
+import g3 from "../assets/images/avatars/g3.webp";
+
 function Home() {
+
+    useEffect(() => {
+        const avatars = [b1, b2, b3, g1, g2, g3];
+
+        avatars.forEach((src) => {
+            const image = new Image();
+            image.src = src;
+        });
+        }, []);
+
   return (
     <main className="home-page landing-page">
       <header className="top-bar">

@@ -1839,3 +1839,26 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+/* Landing page background continuity */
+
+html,
+body,
+#root {
+  background-color: #100d19;
+}
+
+.landing-page {
+  background-color: #100d19;
+  isolation: isolate;
+}
+
+.landing-page::before {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.landing-page::after {
+  background-repeat: no-repeat;
+}

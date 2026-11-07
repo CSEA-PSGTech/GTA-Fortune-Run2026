@@ -3,12 +3,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CrewCard from "./CrewCard";
 
-import b1 from "../assets/images/avatars/b1.png";
-import b2 from "../assets/images/avatars/b2.png";
-import b3 from "../assets/images/avatars/b3.png";
-import g1 from "../assets/images/avatars/g1.png";
-import g2 from "../assets/images/avatars/g2.png";
-import g3 from "../assets/images/avatars/g3.png";
+import b1 from "../assets/images/avatars/b1.webp";
+import b2 from "../assets/images/avatars/b2.webp";
+import b3 from "../assets/images/avatars/b3.webp";
+import g1 from "../assets/images/avatars/g1.webp";
+import g2 from "../assets/images/avatars/g2.webp";
+import g3 from "../assets/images/avatars/g3.webp";
 
 const avatarPool = {
   male: [b1, b2, b3],
