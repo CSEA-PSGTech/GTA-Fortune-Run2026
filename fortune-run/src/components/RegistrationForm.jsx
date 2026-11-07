@@ -119,7 +119,7 @@ function RegistrationForm() {
         })),
       };
 
-      const response = await fetch(API_URL, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/registrations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

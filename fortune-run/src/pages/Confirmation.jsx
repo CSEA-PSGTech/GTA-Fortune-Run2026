@@ -1,8 +1,7 @@
-
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5001/api/registrations";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/registrations`;
 
 function Confirmation() {
   const { state } = useLocation();
@@ -114,30 +113,32 @@ function Confirmation() {
         </div>
 
         <div className="whatsapp-section">
-        <div>
+          <div>
             <h3>STAY CONNECTED</h3>
-            <p>Follow CSEA and join the participants' group for updates.</p>
-        </div>
+            <p>
+              Follow CSEA and join the participants' group for updates.
+            </p>
+          </div>
 
-        <div className="social-links">
+          <div className="social-links">
             <a
-            href="https://www.instagram.com/cseapsgtech/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="instagram-button"
+              href="https://www.instagram.com/cseapsgtech/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="instagram-button"
             >
-            FOLLOW CSEA ON INSTAGRAM 
+              FOLLOW CSEA ON INSTAGRAM
             </a>
 
             <a
-            href="https://chat.whatsapp.com/L0wRygfeNH96oWHr9lb0EW?s=cl&p=i&mlu=4&ilr=4&iam=2"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="whatsapp-invite-button"
+              href="https://chat.whatsapp.com/L0wRygfeNH96oWHr9lb0EW?s=cl&p=i&mlu=4&ilr=4&iam=2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whatsapp-invite-button"
             >
-            JOIN PARTICIPANTS GROUP
+              JOIN PARTICIPANTS GROUP
             </a>
-        </div>
+          </div>
         </div>
 
         <p className="confirmation-footer">
