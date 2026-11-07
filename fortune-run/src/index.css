@@ -763,6 +763,13 @@ button {
 ========================= */
 
 @media (max-width: 650px) {
+
+    .image-action-button,
+    .registration-page .image-action-button {
+        width: 85%;
+        max-width: 340px;
+    }
+
   .home-page {
     min-height: 100svh;
     height: auto;
@@ -945,32 +952,6 @@ button {
 .landing-countdown .countdown-date {
   font-size: 11px;
   margin-top: 18px;
-}
-
-.register-now-button {
-  display: block;
-  width: min(90%, 300px);
-  margin: 10px auto 35px;
-  padding: 16px 25px;
-
-  text-align: center;
-  text-decoration: none;
-
-  color: #190e19;
-  background: linear-gradient(100deg, #ff719f, #ff914d);
-
-  border-radius: 4px;
-
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 2px;
-
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.register-now-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(255, 113, 159, 0.3);
 }
 
 .landing-page .contact-section {
@@ -1694,32 +1675,6 @@ button {
   margin-top: 18px;
 }
 
-.register-now-button {
-  display: block;
-  width: min(90%, 300px);
-  margin: 10px auto 35px;
-  padding: 16px 25px;
-
-  text-align: center;
-  text-decoration: none;
-
-  color: #190e19;
-  background: linear-gradient(100deg, #ff719f, #ff914d);
-
-  border-radius: 4px;
-
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 2px;
-
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.register-now-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(255, 113, 159, 0.3);
-}
-
 .landing-page .contact-section {
   margin-top: auto;
   padding: 20px 0;
@@ -1819,9 +1774,6 @@ button {
     font-size: 10px;
   }
 
-  .register-now-button {
-    margin-bottom: 25px;
-  }
 
   .landing-page .contact-section {
     margin-top: 20px;
@@ -1841,6 +1793,93 @@ button {
 }
 
 /* Landing page background continuity */
+
+html,
+body,
+#root {
+  background-color: #100d19;
+}
+
+.landing-page {
+  background-color: #100d19;
+  isolation: isolate;
+}
+
+.landing-page::before {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.landing-page::after {
+  background-repeat: no-repeat;
+}
+
+/* =========================
+   IMAGE-BASED ACTION BUTTONS
+========================= */
+
+.image-action-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: min(65%, 400px);
+  margin: 15px auto 30px;
+  padding: 10px 14px;
+
+  border: 1px solid rgba(255, 113, 159, 0.4);
+  border-radius: 8px;
+
+  background: rgba(16, 13, 25, 0.65);
+  box-shadow: 0 0 18px rgba(255, 79, 154, 0.12);
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.image-action-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: screen;
+}
+
+.image-action-button:hover:not(:disabled) {
+  border-color: #ff719f;
+  box-shadow: 0 0 25px rgba(255, 79, 154, 0.4);
+  transform: translateY(-3px);
+}
+
+.image-action-button:focus-visible {
+  outline: 2px solid #ff719f;
+  outline-offset: 4px;
+}
+
+.image-action-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Registration page */
+
+.registration-page .image-action-button {
+  width: min(65%, 400px);
+  margin: 10px auto 25px;
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+  .image-action-button,
+  .registration-page .image-action-button {
+    width: 85%;
+    max-width: 340px;
+  }
+}
+
+/* Landing background continuity */
 
 html,
 body,

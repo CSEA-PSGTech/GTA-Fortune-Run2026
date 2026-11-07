@@ -10,6 +10,8 @@ import g1 from "../assets/images/avatars/g1.webp";
 import g2 from "../assets/images/avatars/g2.webp";
 import g3 from "../assets/images/avatars/g3.webp";
 
+import confirmButton from "../assets/images/confirm-your-crew.png";
+
 const avatarPool = {
   male: [b1, b2, b3],
   female: [g1, g2, g3],
@@ -164,11 +166,15 @@ function RegistrationForm() {
 
       <button
         type="submit"
-        className="submit-button"
+        className="image-action-button"
         disabled={loading}
-      >
-        {loading ? "REGISTERING..." : "CONFIRM YOUR CREW ↗"}
-      </button>
+        >
+        <img
+            src={confirmButton}
+            alt={loading ? "Registering..." : "Confirm Your Crew"}
+        />
+        </button>
+
     </form>
   );
 }

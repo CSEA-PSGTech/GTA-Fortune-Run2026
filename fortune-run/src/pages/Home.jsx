@@ -13,6 +13,8 @@ import g1 from "../assets/images/avatars/g1.webp";
 import g2 from "../assets/images/avatars/g2.webp";
 import g3 from "../assets/images/avatars/g3.webp";
 
+import registerButton from "../assets/images/register-now.png";
+
 function Home() {
 
     useEffect(() => {
@@ -58,9 +60,9 @@ function Home() {
         <Countdown />
       </section>
 
-      <Link to="/register" className="register-now-button">
-        REGISTER NOW ↗
-      </Link>
+      <Link to="/register" className="image-action-button">
+        <img src={registerButton} alt="Register Now" />
+        </Link>
 
       <section className="contact-section">
         <p className="contact-heading">FOR QUERIES & SUPPORT</p>
