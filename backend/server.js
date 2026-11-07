@@ -21,9 +21,14 @@ const FRONTEND_ORIGIN =
   process.env.FRONTEND_ORIGIN || "http://localhost:5173";
 
 // CORS configuration
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://gta-fortune-run2026-d92q0cz63.vercel.app",
+];
+
 app.use(
   cors({
-    origin: FRONTEND_ORIGIN,
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   })

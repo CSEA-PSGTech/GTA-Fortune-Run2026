@@ -14,9 +14,9 @@ export const createRegistration = async (req, res) => {
   const { members } = req.body;
 
   // 1. Validate crew size
-  if (!Array.isArray(members) || members.length < 2 || members.length > 3) {
+  if (!Array.isArray(members) || members.length !== 3) {
     return res.status(400).json({
-      message: "A crew must have 2 or 3 members.",
+      message: "A crew must have exactly 3 members.",
     });
   }
 
@@ -25,6 +25,7 @@ export const createRegistration = async (req, res) => {
 
   for (const member of members) {
     if (
+      !member ||
       !member.name?.trim() ||
       !member.rollNo?.trim() ||
       !member.phone?.trim()
@@ -54,7 +55,9 @@ export const createRegistration = async (req, res) => {
     phone: member.phone.trim(),
   }));
 
-  const rollNumbers = normalizedMembers.map((member) => member.rollNo);
+  const rollNumbers = normalizedMembers.map(
+    (member) => member.rollNo
+  );
 
   // 4. Check duplicates within the same crew
   if (new Set(rollNumbers).size !== rollNumbers.length) {

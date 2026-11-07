@@ -10,8 +10,6 @@ import g1 from "../assets/images/avatars/g1.png";
 import g2 from "../assets/images/avatars/g2.png";
 import g3 from "../assets/images/avatars/g3.png";
 
-const API_URL = "http://localhost:5001/api/registrations";
-
 const avatarPool = {
   male: [b1, b2, b3],
   female: [g1, g2, g3],
@@ -40,10 +38,16 @@ function createMember(style, used = []) {
 function RegistrationForm() {
   const navigate = useNavigate();
 
-  const [members, setMembers] = useState(() => [
-    createMember("male"),
-    createMember("female"),
-  ]);
+  const [members, setMembers] = useState(() => {
+    const first = createMember("male");
+    const second = createMember("female", [first.avatar]);
+    const third = createMember("male", [
+      first.avatar,
+      second.avatar,
+    ]);
+
+    return [first, second, third];
+  });
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -59,7 +63,10 @@ function RegistrationForm() {
 
         updatedMember = {
           ...updatedMember,
-          avatar: getRandomAvatar(updatedMember.style, usedByOthers),
+          avatar: getRandomAvatar(
+            updatedMember.style,
+            usedByOthers
+          ),
         };
       }
 
@@ -69,48 +76,20 @@ function RegistrationForm() {
     });
   };
 
-  const addMember = () => {
-    setMembers((current) => {
-      if (current.length >= 3) return current;
-
-      const used = current.map((member) => member.avatar);
-      const style = Math.random() < 0.5 ? "male" : "female";
-
-      let avatar = getRandomAvatar(style, used);
-      let selectedStyle = style;
-
-      if (!avatar) {
-        selectedStyle = style === "male" ? "female" : "male";
-        avatar = getRandomAvatar(selectedStyle, used);
-      }
-
-      return [
-        ...current,
-        {
-          style: selectedStyle,
-          avatar,
-          name: "",
-          rollNo: "",
-          phone: "",
-        },
-      ];
-    });
-  };
-
-  const removeMember = (index) => {
-    setMembers((current) => current.filter((_, i) => i !== index));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (loading) return;
 
+    if (members.length !== 3) {
+      setError("Exactly 3 crew members are required.");
+      return;
+    }
+
     setLoading(true);
     setError("");
 
     try {
-      // Send only the fields required by the backend.
       const payload = {
         members: members.map(({ name, rollNo, phone }) => ({
           name: name.trim(),
@@ -119,13 +98,16 @@ function RegistrationForm() {
         })),
       };
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/registrations`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/registrations`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
       const data = await response.json();
 
@@ -151,7 +133,8 @@ function RegistrationForm() {
       }
     } catch (err) {
       setError(
-        err.message || "Unable to connect to the server. Please try again."
+        err.message ||
+          "Unable to connect to the server. Please try again."
       );
     } finally {
       setLoading(false);
@@ -160,32 +143,18 @@ function RegistrationForm() {
 
   return (
     <form className="registration-form" onSubmit={handleSubmit}>
-      <div
-        className={`crew-grid ${
-          members.length === 3 ? "three-members" : ""
-        }`}
-      >
+      <div className="crew-grid three-members">
         {members.map((member, index) => (
           <CrewCard
             key={index}
             member={member}
             playerNumber={index + 1}
-            onChange={(updated) => handleMemberChange(index, updated)}
-            onRemove={() => removeMember(index)}
+            onChange={(updated) =>
+              handleMemberChange(index, updated)
+            }
           />
         ))}
       </div>
-
-      {members.length < 3 && (
-        <button
-          type="button"
-          className="add-member-button"
-          onClick={addMember}
-          disabled={loading}
-        >
-          + ADD CREW MEMBER
-        </button>
-      )}
 
       {error && (
         <p className="registration-error" role="alert">
