@@ -101,7 +101,7 @@ function RegistrationForm() {
       };
 
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/registrations`,
+        `${import.meta.env.VITE_API_URL || import.meta.env.BASE_URL.replace(/\/$/, "")}/api/registrations`,
         {
           method: "POST",
           headers: {
